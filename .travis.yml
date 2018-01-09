@@ -7,4 +7,5 @@ before_install:
 
 script:
   - ls -a
-  - docker cp *.* ppred:portalPredictions
+  - docker cp *.* ppred:
+  - docker exec -i ls
