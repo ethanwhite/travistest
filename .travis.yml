@@ -6,7 +6,10 @@ before_install:
   - docker run --name ppred -t -d weecology/portal_predictions /bin/bash
 
 script:
+  - pwd
+  - cd ..
   - ls -a
+  - cp -R .
   - docker exec -i ppred mkdir portalPredictions
   - docker cp *.* ppred:portalPredictions
   - docker exec -i ppred ls portalPredictions
