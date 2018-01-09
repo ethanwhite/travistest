@@ -10,5 +10,5 @@ script:
   - cd ..
   - ls -a
   - cp -R travistest portalPredictions
-  - docker cp portalPredictions ppred:
+  - docker cp portalPredictions ppred:/
   - docker exec -i ppred ls portalPredictions
