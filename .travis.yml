@@ -9,7 +9,6 @@ script:
   - pwd
   - cd ..
   - ls -a
-  - cp -R .
-  - docker exec -i ppred mkdir portalPredictions
-  - docker cp *.* ppred:portalPredictions
+  - cp -R travistest portalPredictions
+  - docker cp portalPredictions ppred:
   - docker exec -i ppred ls portalPredictions
