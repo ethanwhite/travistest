@@ -7,5 +7,5 @@ before_install:
 
 script:
   - ls -a
-  - docker cp *.* ppred:
+  - docker cp . ppred:
   - docker exec -i ls
