@@ -7,7 +7,6 @@ before_install:
 
 script:
   - pwd
-  - cd ..
   - ls -a
   - docker cp ../travistest ppred:/
   - docker exec -i ppred ls travistest
