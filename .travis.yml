@@ -4,5 +4,4 @@ sudo: required
 script:
   - touch test.txt
   - echo "Talkin' ain't doin'" >> test.txt
-  - git add test.txt
   - bash archive.sh
