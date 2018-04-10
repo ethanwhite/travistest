@@ -1,7 +1,10 @@
-language: bash
-sudo: required
+language: r
+cache: packages
+sudo: false
+warnings_are_errors: false
+
+install:
+  - R -e 'library(git2r); sessionInfo()'
 
 script:
-  - touch test.txt
-  - echo "Talkin' ain't doin'" >> test.txt
-  - bash archive.sh
+  - R -e 'repo <- git2r::repository("."); last_commit <- git2r::commits(repo)[[1]]; last_commit@summary'
