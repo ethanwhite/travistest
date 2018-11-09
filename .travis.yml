@@ -1,10 +1,23 @@
 language: r
 cache: packages
 sudo: false
-warnings_are_errors: false
 
 install:
-  - R -e 'library(git2r); sessionInfo()'
+  - sudo apt-get update
+  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  # Useful for debugging any issues with conda
+  - conda info -a
+
+  # Replace dep1 dep2 ... with your dependencies
+  - conda create -q -n test-environment python=3 xlrd future argcomplete tqdm requests pandas pymysql psycopg2
+  - source activate test-environment
+  - pip install git+https://git@github.com/weecology/retriever.git
 
 script:
-  - R -e 'repo <- git2r::repository("."); last_commit <- git2r::commits(repo)[[1]]; last_commit@summary'
+  - retriever update
+  - retriever ls
