@@ -6,5 +6,5 @@ install:
   - R -e "install.packages(c('htmltab'))"
 
 script:
-  - R -e "download.file('http://166.153.133.121/?command=TableDisplay&table=MET&records=100', 'weather_table.html', method='curl')"
+  - R -e "download.file('http://166.153.133.121/?command=TableDisplay&table=MET&records=10', 'weather_table.html', method='curl')"
   - R -e "htmltab::htmltab(doc='weather_table.html', sep = '')"
