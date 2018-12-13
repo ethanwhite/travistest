@@ -6,4 +6,4 @@ install:
   - R -e "install.packages(c('htmltab'))"
 
 script:
-  - R -e "readLines('http://166.153.133.121/')"
+  - R -e "readLines('http://166.153.133.121/?command=NewestRecord&table=MET')"
