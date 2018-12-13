@@ -6,4 +6,5 @@ install:
   - R -e "install.packages(c('htmltab', 'curl'))"
 
 script:
+  - curl --version
   - R -e "readLines('http://166.153.133.121/?command=TableDisplay&table=MET&records=10', n = 10)"
