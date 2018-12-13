@@ -6,5 +6,4 @@ install:
   - R -e "install.packages(c('htmltab'))"
 
 script:
-  - curl -o weather_table_cli.html http://166.153.133.121/?command=TableDisplay&table=MET&records=10
-  - R -e "htmltab::htmltab(doc='weather_table_cli.html', sep = '')"
+  - R -e "readLines('http://166.153.133.121/')"
