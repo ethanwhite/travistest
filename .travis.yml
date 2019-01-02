@@ -2,10 +2,17 @@ language: r
 cache: packages
 sudo: false
 
+before_install:
+  - docker pull python
+  - docker run --name mypy -t -d python /bin/bash
+  - docker cp download_weather.py mypy:/
+  - docker exec -i mypy ls
 
 install:
   - R -e "install.packages(c('htmltab', 'curl'))"
 
 script:
-  - python download_weather.py
+  - docker exec -i mypy bash -c "pip install requests"
+  - docker exec -i mypy bash -c "python download_weather.py"
+  - docker cp mypy:/weather.txt .
   - cat weather.txt
