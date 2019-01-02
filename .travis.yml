@@ -2,17 +2,15 @@ language: r
 cache: packages
 sudo: false
 
-before_install:
-  - docker pull python
-  - docker run --name mypy -t -d python /bin/bash
-  - docker cp download_weather.py mypy:/
-  - docker exec -i mypy ls
+addons:
+  apt:
+    packages:
+      - phantomjs
 
 install:
   - R -e "install.packages(c('htmltab', 'curl'))"
 
 script:
-  - docker exec -i mypy bash -c "pip install requests"
-  - docker exec -i mypy bash -c "python download_weather.py"
-  - docker cp mypy:/weather.txt .
-  - cat weather.txt
+  - phantomjs scrape_weather_data.js
+  - head data_table.html
+  - tail data_table.html
