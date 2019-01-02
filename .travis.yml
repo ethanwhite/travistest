@@ -1,15 +1,11 @@
-dist: xenial
 language: r
 cache: packages
 sudo: false
-addons:
-  apt:
-    packages:
-      - phantomjs
 
 
 install:
   - R -e "install.packages(c('htmltab', 'curl'))"
 
 script:
-  - R -e "readLines('http://166.153.133.121/?command=TableDisplay&table=MET&records=10')"
+  - python download_weather.py
+  - cat weather.txt
